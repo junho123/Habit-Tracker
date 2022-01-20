@@ -1,22 +1,22 @@
 import React, { memo } from "react";
 
-const HabitAddForm = memo((props) => {
+const HabitAddForm = memo(({ onAdd }) => {
   const formRef = React.createRef();
   const inputRef = React.createRef();
 
   const onSubmit = (event) => {
     event.preventDefault();
-    const name = this.inputRef.current.value;
-    name && props.onAdd(name);
-    this.formRef.current.reset();
+    const text = inputRef.current.value;
+    text && onAdd(text);
+    formRef.current.reset();
   };
   return (
     <form ref={formRef} className="add-form" onSubmit={onSubmit}>
       <input
         ref={inputRef}
-        type="text"
         className="add-input"
-        placdholder="Habit"
+        type="text"
+        placeholder="Habit"
       />
       <button className="add-button">Add</button>
     </form>
